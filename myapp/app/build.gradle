@@ -7,7 +7,7 @@
 //Gradle 빌드 도구가 사용할 플러그인 설정
 plugins {
     //java 플러그인 사용
-    id 'java'
+    id 'application'
 
 
     //eclip IDE 관련 작업을 수행할 수 있는 플러그인
@@ -47,13 +47,13 @@ java {
     }
 }
 
-/*
- 'application' 플러그인과 관련된 설정
+
+ /*'application'*/
 application {
-  mainClass = 'Hello' //'run' 명령을 수행할 때
+  mainClass = 'bitcamp.myapp.App' //'run' 명령을 수행할 때
     //실행시킬 자바 클래스이름을 지정
 }
-*/
+
 
 //단위 테스트를 수행할 때 사용할 설정
 tasks.named('test') {
@@ -67,7 +67,7 @@ tasks.withType(JavaCompile).configureEach {
 //eclipse 프로젝트 이름 설정
 eclipse {
     project {
-        name = "java-basic"
+        name = "myapp"
     }
     jdt {
       sourceCompatibility = 17
