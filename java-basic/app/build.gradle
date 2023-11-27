@@ -35,6 +35,12 @@ dependencies {
 
     implementation 'com.google.guava:guava:32.1.1-jre'
 
+    dependencies {
+
+    implementation 'org.fusesource.jansi:jansi:1.18'
+
+}
+
 
 //단위 테스트 할 때 관련된 라이브러리
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'

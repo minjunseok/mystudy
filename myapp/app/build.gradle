@@ -15,7 +15,7 @@ plugins {
 
     // 실행할 수 있는 자바 애플리케이션을 생성하는 플러그인 'java'플러그인은 자동추가
     // 따로 'java' 플러그인 추가할 필요없음
-   // id 'application' //application = java + 실행과 관련된 태스크
+    // id 'application' //application = java + 실행과 관련된 태스크
 }
 //이 프로젝트에서 사용할 외부 라이브러리를 제공하는 서버 설정.
 //외부 라이브러리?
@@ -35,9 +35,13 @@ dependencies {
 
     implementation 'com.google.guava:guava:32.1.1-jre'
 
+implementation 'org.fusesource.jansi:jansi:1.18'
+
 
 //단위 테스트 할 때 관련된 라이브러리
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
+    implementation 'org.fusesource.jansi:jansi:1.18'
 }
 
 //소스파일이 어떤 자바 버전으로 되어 있는지 Gradle에게 알려준다.
@@ -48,9 +52,9 @@ java {
 }
 
 
- /*'application'*/
+/*'application'*/
 application {
-  mainClass = 'bitcamp.myapp.App' //'run' 명령을 수행할 때
+    mainClass = 'bitcamp.myapp.App' //'run' 명령을 수행할 때
     //실행시킬 자바 클래스이름을 지정
 }
 
@@ -70,8 +74,8 @@ eclipse {
         name = "myapp"
     }
     jdt {
-      sourceCompatibility = 17
-      targetCompatibility = 17
-      javaRuntimeName = "JavaSE-17"
+        sourceCompatibility = 17
+        targetCompatibility = 17
+        javaRuntimeName = "JavaSE-17"
     }
 }
