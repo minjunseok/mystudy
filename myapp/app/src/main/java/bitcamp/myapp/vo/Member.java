@@ -1,8 +1,9 @@
-package bitcamp.myapp;
+package bitcamp.myapp.vo;
 
 public class Member {
-    String name;
-    String email;
-    String password;
-    String createdDate;
+
+  public String email;
+  public String name;
+  public String password;
+  public String createdDate;
 }

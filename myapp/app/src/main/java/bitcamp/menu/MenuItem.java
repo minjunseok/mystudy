@@ -1,4 +1,4 @@
-package bitcamp.myapp.menu;
+package bitcamp.menu;
 
 import bitcamp.util.Prompt;
 
@@ -9,26 +9,26 @@ import bitcamp.util.Prompt;
 //
 public class MenuItem implements Menu {
 
-    String title;
+  String title;
+  MenuHandler menuHandler;
 
-    public MenuItem(String title) { //제목만 설정하는 메뉴아이템
-        this.title = title;
+  public MenuItem(String title) {
+    this.title = title;
+  }
+
+  public MenuItem(String title, MenuHandler menuHandler) {
+    this(title);
+    this.menuHandler = menuHandler;
+  }
+
+  public void execute(Prompt prompt) {
+    if (this.menuHandler != null) {
+      this.menuHandler.action(this);
     }
+  }
 
-    public MenuItem(String title , MenuHandler menuHandler) {
-
-        this(title);
-        this.menuHandler = menuHandler;
-    }
-
-    public void execute(Prompt prompt) { //메뉴핸들러가 등록되어있으면 실행하겠다.
-        if (this.menuHandler != null) {
-            this.menuHandler.action();
-        }
-    }
-
-    @Override
-    public String getTitle() {
-        return this.title;
-    }
+  @Override
+  public String getTitle() {
+    return this.title;
+  }
 }

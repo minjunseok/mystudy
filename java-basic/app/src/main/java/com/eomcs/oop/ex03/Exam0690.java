@@ -1,4 +1,4 @@
-// 스태틱 초기화 블록(static initializer) - 활용
+1// 스태틱 초기화 블록(static initializer) - 활용
 package com.eomcs.oop.ex03;
 
 public class Exam0690 {

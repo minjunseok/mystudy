@@ -1,30 +1,79 @@
 package bitcamp.myapp;
 
+import bitcamp.menu.MenuGroup;
+import bitcamp.menu.MenuItem;
+import bitcamp.myapp.handler.HelpHandler;
+import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
+import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
+import bitcamp.myapp.handler.assignment.AssignmentListHandler;
+import bitcamp.myapp.handler.assignment.AssignmentModifyHandler;
+import bitcamp.myapp.handler.assignment.AssignmentRepository;
+import bitcamp.myapp.handler.assignment.AssignmentViewHandler;
+import bitcamp.myapp.handler.board.BoardAddHandler;
+import bitcamp.myapp.handler.board.BoardDeleteHandler;
+import bitcamp.myapp.handler.board.BoardListHandler;
+import bitcamp.myapp.handler.board.BoardModifyHandler;
+import bitcamp.myapp.handler.board.BoardRepository;
+import bitcamp.myapp.handler.board.BoardViewHandler;
+import bitcamp.myapp.handler.member.MemberAddHandler;
+import bitcamp.myapp.handler.member.MemberDeleteHandler;
+import bitcamp.myapp.handler.member.MemberListHandler;
+import bitcamp.myapp.handler.member.MemberModifyHandler;
+import bitcamp.myapp.handler.member.MemberRepository;
+import bitcamp.myapp.handler.member.MemberViewHandler;
+import bitcamp.util.Prompt;
+
 public class App {
 
-  public static void main(String[] args) {
-//변수를 사용함으로써 메모리 사용
-    //실행속도가 상대적으로 떨어질 수 있으나 코드를 직관적으로 이해가 가능 refactoring의 목적중 하나
-    //refactoring = 만든코드를 다시 정리함
-    //반댓말은 optimizing = 개발비절감을 포기하고 성능을 강화한다. (현재는 컴퓨터성능강화로 중요하지않음)
-    //유지보수가 빨라짐= 개발비 절감
+  public static void main(String[] args) throws Exception {
+    Prompt prompt = new Prompt(System.in);
+    //new MainMenu(prompt).execute();
 
-    String ANSI_CLEAR = "\033[0m";
-    String ANSI_BOLD_RED = "\033[1;31m";
-    String ANSI_RED = "\033[0;31m";
-    String appTitle = "[과제관리 시스템]";
+    BoardRepository boardRepository = new BoardRepository();
+    AssignmentRepository assignmentRepository = new AssignmentRepository();
+    MemberRepository memberRepository = new MemberRepository();
+    BoardRepository greetingRepository = new BoardRepository();
 
-    String menu1 = "1. 과제 ",
-        menu2 = "2. 게시글",
-        menu3 = "3. 도움말",
-        menu4 = "4. 종료";
+    MenuGroup mainMenu = new MenuGroup("메인");
 
-    System.out.println(ANSI_BOLD_RED + appTitle + ANSI_CLEAR);
-    System.out.println();
-    System.out.println(menu1);
-    System.out.println(menu2);
-    System.out.println(menu3);
-    System.out.println(menu4);
-    System.out.println(ANSI_BOLD_RED + menu4 + ANSI_CLEAR);
+    MenuGroup assignmentMenu = new MenuGroup("과제");
+    assignmentMenu.add(new MenuItem("등록", new AssignmentAddHandler(assignmentRepository, prompt)));
+    assignmentMenu.add(new MenuItem("조회", new AssignmentViewHandler(assignmentRepository, prompt)));
+    assignmentMenu.add(
+        new MenuItem("변경", new AssignmentModifyHandler(assignmentRepository, prompt)));
+    assignmentMenu.add(
+        new MenuItem("삭제", new AssignmentDeleteHandler(assignmentRepository, prompt)));
+    assignmentMenu.add(new MenuItem("목록", new AssignmentListHandler(assignmentRepository)));
+    mainMenu.add(assignmentMenu);
+
+    MenuGroup boardMenu = new MenuGroup("게시글");
+    boardMenu.add(new MenuItem("등록", new BoardAddHandler(boardRepository, prompt)));
+    boardMenu.add(new MenuItem("조회", new BoardViewHandler(boardRepository, prompt)));
+    boardMenu.add(new MenuItem("변경", new BoardModifyHandler(boardRepository, prompt)));
+    boardMenu.add(new MenuItem("삭제", new BoardDeleteHandler(boardRepository, prompt)));
+    boardMenu.add(new MenuItem("목록", new BoardListHandler(boardRepository)));
+    mainMenu.add(boardMenu);
+
+    MenuGroup memberMenu = new MenuGroup("회원");
+    memberMenu.add(new MenuItem("등록", new MemberAddHandler(memberRepository, prompt)));
+    memberMenu.add(new MenuItem("조회", new MemberViewHandler(memberRepository, prompt)));
+    memberMenu.add(new MenuItem("변경", new MemberModifyHandler(memberRepository, prompt)));
+    memberMenu.add(new MenuItem("삭제", new MemberDeleteHandler(memberRepository, prompt)));
+    memberMenu.add(new MenuItem("목록", new MemberListHandler(memberRepository)));
+    mainMenu.add(memberMenu);
+
+    MenuGroup greetingMenu = new MenuGroup("가입인사");
+    greetingMenu.add(new MenuItem("등록", new BoardAddHandler(greetingRepository, prompt)));
+    greetingMenu.add(new MenuItem("조회", new BoardViewHandler(greetingRepository, prompt)));
+    greetingMenu.add(new MenuItem("변경", new BoardModifyHandler(greetingRepository, prompt)));
+    greetingMenu.add(new MenuItem("삭제", new BoardDeleteHandler(greetingRepository, prompt)));
+    greetingMenu.add(new MenuItem("목록", new BoardListHandler(greetingRepository)));
+    mainMenu.add(greetingMenu);
+
+    mainMenu.add(new MenuItem("도움말", new HelpHandler()));
+
+    mainMenu.execute(prompt);
+
+    prompt.close();
   }
 }
