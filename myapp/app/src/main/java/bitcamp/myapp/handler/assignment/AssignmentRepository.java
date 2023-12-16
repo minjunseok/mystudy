@@ -1,7 +1,9 @@
 package bitcamp.myapp.handler.assignment;
 
+import bitcamp.menu.Menu;
 import bitcamp.myapp.vo.Assignment;
 import bitcamp.util.AnsiEscape;
+
 
 public class AssignmentRepository {
 
@@ -25,25 +27,49 @@ public class AssignmentRepository {
       // 새 배열을 가리키도록 배열 레퍼런스를 변경
       this.assignments = arr;
     }
-    this.assignments[this.length++;] = assignment;
+    this.assignments[this.length++] = assignment;
   }
 
   public Assignment remove(int index) {
 
 
-    if (index < 0 || index >= this.assignments.length) {
-
+    if (index < 0 || index >= this.length) {
       return null;
     }
-    Assignment deleted = this assignments[index];
+
+    Assignment deleted = this.assignments[index];
 
     for (int i = index; i < (this.length - 1); i++) {
-      this.assignments[i] = this.assignments[i+ 1]; // 다음 레퍼런스의 값을 삭제하려는 현재 레퍼런스로 이동
+      this.assignments[i] = this.assignments[i + 1];
     }
-
     this.assignments[--this.length] = null;
 
     return deleted;
     }
+    public Assignment[] toArray() {
+      Assignment[] arr = new Assignment[this.length];
+      for (int i = 0; i < this.length; i++) {
+        arr[i] = this.assignments[i];
+      }
+      return arr;
+  }
+  public Assignment get(int index){
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+    return this.assignments [index];
+  }
+  public Assignment set(int index,Assignment assignment){
+    if (index < 0 || index >= this.length) {
+      return null;
+    }
+
+    Assignment old = this.assignments[index];
+    this.assignments[index] = assignment;
+
+    // 새 객체로 교체하기 전에 이전 객체를 리턴한다.
+    // 호출하는 쪽에서 받아 쓰거나 말거나 알아서 하라고!
+    return old;
+  }
   }
 

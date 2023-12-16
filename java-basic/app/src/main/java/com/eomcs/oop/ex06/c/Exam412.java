@@ -36,18 +36,19 @@ public class Exam412 {
     void m() {
       System.out.println("A3의 m()");
     }
-  }
 
-  public static void main(String[] args) {
-    A3 obj = new A3();
-    obj.test();  // A2의 test() 호출
+    static class A4 extends A3 {
+      @Override
+      void m() {
+        System.out.println("A3의 m()");
+      }
+    }
+
+    public static void main(String[] args) {
+      A3 obj = new A3();
+      obj.test(); // A2의 test() 호출
+    }
   }
 }
-
-
-
-
-
-
 
 
