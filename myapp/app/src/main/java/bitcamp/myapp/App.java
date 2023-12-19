@@ -7,32 +7,32 @@ import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
 import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
 import bitcamp.myapp.handler.assignment.AssignmentListHandler;
 import bitcamp.myapp.handler.assignment.AssignmentModifyHandler;
-import bitcamp.myapp.handler.assignment.AssignmentRepository;
 import bitcamp.myapp.handler.assignment.AssignmentViewHandler;
 import bitcamp.myapp.handler.board.BoardAddHandler;
 import bitcamp.myapp.handler.board.BoardDeleteHandler;
 import bitcamp.myapp.handler.board.BoardListHandler;
 import bitcamp.myapp.handler.board.BoardModifyHandler;
-import bitcamp.myapp.handler.board.BoardRepository;
 import bitcamp.myapp.handler.board.BoardViewHandler;
 import bitcamp.myapp.handler.member.MemberAddHandler;
 import bitcamp.myapp.handler.member.MemberDeleteHandler;
 import bitcamp.myapp.handler.member.MemberListHandler;
 import bitcamp.myapp.handler.member.MemberModifyHandler;
-import bitcamp.myapp.handler.member.MemberRepository;
 import bitcamp.myapp.handler.member.MemberViewHandler;
+import bitcamp.myapp.vo.Assignment;
+import bitcamp.myapp.vo.Board;
+import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
+import java.util.ArrayList;
 
 public class App {
 
   public static void main(String[] args) throws Exception {
     Prompt prompt = new Prompt(System.in);
-    //new MainMenu(prompt).execute();
 
-    BoardRepository boardRepository = new BoardRepository();
-    AssignmentRepository assignmentRepository = new AssignmentRepository();
-    MemberRepository memberRepository = new MemberRepository();
-    BoardRepository greetingRepository = new BoardRepository();
+    ArrayList<Board> boardRepository = new ArrayList<>();
+    ArrayList<Assignment> assignmentRepository = new ArrayList<>();
+    ArrayList<Member> memberRepository = new ArrayList<>();
+    ArrayList<Board> greetingRepository = new ArrayList<>();
 
     MenuGroup mainMenu = new MenuGroup("메인");
 
