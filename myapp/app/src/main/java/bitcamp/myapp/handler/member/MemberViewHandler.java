@@ -1,26 +1,21 @@
 package bitcamp.myapp.handler.member;
 
-import bitcamp.menu.Menu;
-import bitcamp.menu.MenuHandler;
+import bitcamp.menu.AbstractMenuHandler;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.AnsiEscape;
 import bitcamp.util.Prompt;
 import java.util.ArrayList;
 
-public class MemberViewHandler implements MenuHandler {
+public class MemberViewHandler extends AbstractMenuHandler {
 
-  private Prompt prompt;
   private ArrayList<Member> objectRepository;
 
   public MemberViewHandler(ArrayList<Member> objectRepository, Prompt prompt) {
+    super(prompt);
     this.objectRepository = objectRepository;
-    this.prompt = prompt;
   }
 
   @Override
-  public void action(Menu menu) {
-    System.out.printf(AnsiEscape.ANSI_BOLD + "[%s]\n" + AnsiEscape.ANSI_CLEAR, menu.getTitle());
-
+  public void action() {
     int index = this.prompt.inputInt("번호? ");
     Member member = this.objectRepository.get(index);
     if (member == null) {

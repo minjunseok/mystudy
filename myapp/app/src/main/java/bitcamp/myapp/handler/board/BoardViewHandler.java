@@ -1,10 +1,7 @@
 package bitcamp.myapp.handler.board;
 
 import bitcamp.menu.AbstractMenuHandler;
-import bitcamp.menu.Menu;
-import bitcamp.menu.MenuHandler;
 import bitcamp.myapp.vo.Board;
-import bitcamp.util.AnsiEscape;
 import bitcamp.util.Prompt;
 import java.util.ArrayList;
 
@@ -14,17 +11,14 @@ import java.util.ArrayList;
 public class BoardViewHandler extends AbstractMenuHandler {
 
   private ArrayList<Board> objectRepository;
-  private Prompt prompt;
 
   public BoardViewHandler(ArrayList<Board> objectRepository, Prompt prompt) {
+    super(prompt);
     this.objectRepository = objectRepository;
-    this.prompt = prompt;
   }
 
   @Override
-  public void action(Menu menu) {
-    super.action(menu); // 현재 메서드가 소속된 수퍼클레스에서 액션메서드를 호출해라 //원래 하던일인 제목출력을 하면서 기능추가
-//오버라이딩하기전에 기존 기능은 유지 + 내가만든 기능을 추가한다
+  public void action() {
     int index = this.prompt.inputInt("번호? ");
     Board board = this.objectRepository.get(index);
     if (board == null) {
