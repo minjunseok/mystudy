@@ -11,7 +11,7 @@ public class BoardRepository {
   int length = 0;
 
 
-  public void add (Board board){
+  public void add(Board board) {
 
     if (this.length == this.boards.length) {
       int oldSize = this.boards.length;
@@ -28,22 +28,26 @@ public class BoardRepository {
 
   }
 
-  public void remove (int index){
+  public Board remove(int index) {
 
-    if (index < 0 } index >= this.length){
-      return null;
+
+    if (index < 0 || index >= this.length) {
+      System.out.println("게시글 번호가 유효하지 않습니다.");{
+        return null;
+      }
+      Board deleted = this.boards[index];
+
+      for (int i = index; i < (this.length - 1); i++) {
+        this.boards[i] = this.boards[i + 1];
+      }
+      this.boards[--this.length] = null;
+   return deleted;
     }
 
-    Board deleted = this.boards[index];
 
-    {
-      System.out.println("게시글 번호가 유효하지 않습니다.");
-      return;
+    public Board get(int index){
+
     }
 
-    for (int i = index; i < (this.length - 1); i++) {
-      this.boards[i] = this.boards[i + 1];
-    }
-    this.boards[--this.length] = null;
   }
 }

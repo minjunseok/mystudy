@@ -34,5 +34,10 @@ public class BoardModifyHandler implements MenuHandler {
     board.content = this.prompt.input("내용(%s)? ", board.content);
     board.writer = this.prompt.input("작성자(%s)? ", board.writer);
     board.createdDate = this.prompt.input("작성일(%s)? ", board.createdDate);
+
+
+    public void remove (int index) {
+
+    }
   }
 }

@@ -27,10 +27,5 @@ public class BoardDeleteHandler implements MenuHandler {
       System.out.println("게시글 번호가 유효하지 않습니다.");
       return;
     }
-
-    for (int i = index; i < (this.boardRepository.length - 1); i++) {
-      this.boardRepository.boards[i] = this.boardRepository.boards[i + 1];
-    }
-    this.boardRepository.boards[--this.boardRepository.length] = null;
   }
 }
