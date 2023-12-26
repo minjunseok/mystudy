@@ -6,11 +6,11 @@ public class App {
 
   public static void main(String[] args) {
     Scanner keyIn = new Scanner(System.in);
-    int a = keyIn.nextInt();
-    int b = keyIn.nextInt();
+    double a = keyIn.nextInt();
+    double b = keyIn.nextInt();
     keyIn.close();
 
-    System.out.println(a - b);
+    System.out.println(a / b);
 
   }
 

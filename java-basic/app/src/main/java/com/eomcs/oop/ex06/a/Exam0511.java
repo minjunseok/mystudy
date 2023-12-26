@@ -18,9 +18,10 @@ public class Exam0511 {
     System.out.println(v.getClass() == Vehicle.class);
     System.out.println(v.getClass() == Truck.class);
     System.out.println(v.getClass() == Bike.class);
-
   }
 
 }
+
+
 
 

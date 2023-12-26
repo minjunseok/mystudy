@@ -18,13 +18,13 @@ public class BoardListHandler extends AbstractMenuHandler {
   }
 
   @Override
-  public void action() {
+  protected void action() {
     System.out.printf("%-20s\t%10s\t%s\n", "Title", "Writer", "Date");
 
     Board[] boards = this.objectRepository.toArray(new Board[0]);
 
     for (Board board : boards) {
-      System.out.printf("%-20s\t%10s\t%s\n",
+      System.out.printf("%-20s\t%10s\t%3$tY-%3$tm-%3$td\n",
           board.getTitle(),
           board.getWriter(),
           board.getCreatedDate());

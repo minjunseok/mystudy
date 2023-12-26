@@ -11,7 +11,7 @@ public class Score2 {
   public int sum;
   public float aver;
 
-  // 새 필드를 추가한다.ㅛㅛㅗㅛ
+  // 새 필드를 추가한다.
   public int music;
   public int art;
 
@@ -22,5 +22,10 @@ public class Score2 {
     this.aver = this.sum / 5f;
   }
 }
+
+
+
+
+
 
 

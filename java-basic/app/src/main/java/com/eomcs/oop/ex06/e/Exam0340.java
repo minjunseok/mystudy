@@ -2,8 +2,6 @@
 package com.eomcs.oop.ex06.e;
 
 class F {
-
-  // 스태틱변수도 똑같다 final선언시 중복 초기화가 안
   // 상수 필드는 인스턴스 마다 개별적으로 관리하지 않기 때문에
   // 보통 스태틱 필드(클래스 필드)로 만든다.
   // 공개할 경우 public 으로 선언한다.
@@ -17,7 +15,6 @@ class F {
   }
 
 }
-
 
 public final class Exam0340 {
   public static void main(String[] args) {

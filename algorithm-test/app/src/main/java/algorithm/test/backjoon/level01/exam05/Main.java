@@ -1,4 +1,4 @@
-package com.eomcs.oop;
+package algorithm.test.backjoon.level01.exam05;
 
 import java.util.Scanner;
 
@@ -10,8 +10,11 @@ public class Main {
     int b = keyIn.nextInt();
     keyIn.close();
 
+    System.out.println(a + b);
     System.out.println(a - b);
-
+    System.out.println(a * b);
+    System.out.println(a / b);
+    System.out.println(a % b);
   }
 
 }
