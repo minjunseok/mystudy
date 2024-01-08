@@ -11,7 +11,6 @@ class My {
   }
 }
 
-
 public class Exam0450 {
   // 인터페이스의 경우 static으로 선언하지 않아도 스태틱 멤버에서 사용할 수 있다.
   interface A {
@@ -20,7 +19,6 @@ public class Exam0450 {
 
   static A create0() {
     class X implements A {
-      @Override
       @Override
       public void print() {
         System.out.println("Hello0!");
@@ -32,7 +30,6 @@ public class Exam0450 {
   static A create1() {
     A a = new A() {
       @Override
-      @Override
       public void print() {
         System.out.println("Hello1!");
       }
@@ -43,7 +40,6 @@ public class Exam0450 {
   static A create2() {
     return new A() {
       @Override
-      @Override
       public void print() {
         System.out.println("Hello2!");
       }
@@ -52,19 +48,28 @@ public class Exam0450 {
 
   static A create3() {
     return () -> System.out.println("Hello3!");
-  }
-  // 컴파일러는 위의 문장을 다음과 같이 바꾼다.
 
+    // 컴파일러는 위의 문장을 다음과 같이 바꾼다.
+    //    return new A() {
+    //      @Override
+    //      public void print() {
+    //        System.out.println("Hello3!");
+    //      }
+    //    };
+  }
 
   static A create4() {
     return My::m1;
 
-    // 컴파일러는 위의 문장을 다음과 같이 바꿈
-    // return () -> My.m1();
+    // 컴파일러는 위의 문장을 다음과 같이 바꾼다.
+    //    return () -> My.m1();
   }
 
   static A create5() {
     return new My()::m2;
+
+    // 컴파일러는 위의 문장을 다음과 같이 바꾼다.
+    //    return () -> new My().m2();
   }
 
   public static void main(String[] args) {

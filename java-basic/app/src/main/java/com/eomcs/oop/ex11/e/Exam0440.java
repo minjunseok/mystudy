@@ -16,7 +16,6 @@ public class Exam0440 {
     // 1) 로컬 클래스 만들기
     class X implements A {
       @Override
-      @Override
       public void print() {
         System.out.println("XXXXX");
       }
@@ -25,7 +24,6 @@ public class Exam0440 {
 
     // 2) 익명 클래스 만들기
     A obj = new A() {
-      @Override
       @Override
       public void print() {
         System.out.println("익명 클래스!!!");
@@ -36,17 +34,20 @@ public class Exam0440 {
     // 3) 익명 클래스를 파라미터 자리에 바로 삽입
     m1(new A() {
       @Override
-      @Override
       public void print() {
         System.out.println("안녕!!!");
       }
     });
 
     // 위의 코드는 컴파일러가 다음 코드로 바꾼다.
-    class Exam0440$2 implements A { 
-      
-    }
-    }
-    
+    //    class Exam0440$2 implements A {
+    //      @Override
+    //      public void print() {
+    //        System.out.println("안녕!!!");
+    //      }
+    //    }
+    //    A temp = new Exam0440$2();
+    //    m1(temp);
+
   }
 }

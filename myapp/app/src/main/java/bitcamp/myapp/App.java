@@ -1,18 +1,32 @@
 package bitcamp.myapp;
 
-import bitcamp.io.BufferedDataInputStream;
-import bitcamp.io.BufferedDataOutputStream;
 import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.handler.HelpHandler;
-import bitcamp.myapp.handler.assignment.*;
-import bitcamp.myapp.handler.board.*;
-import bitcamp.myapp.handler.member.*;
+import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
+import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
+import bitcamp.myapp.handler.assignment.AssignmentListHandler;
+import bitcamp.myapp.handler.assignment.AssignmentModifyHandler;
+import bitcamp.myapp.handler.assignment.AssignmentViewHandler;
+import bitcamp.myapp.handler.board.BoardAddHandler;
+import bitcamp.myapp.handler.board.BoardDeleteHandler;
+import bitcamp.myapp.handler.board.BoardListHandler;
+import bitcamp.myapp.handler.board.BoardModifyHandler;
+import bitcamp.myapp.handler.board.BoardViewHandler;
+import bitcamp.myapp.handler.member.MemberAddHandler;
+import bitcamp.myapp.handler.member.MemberDeleteHandler;
+import bitcamp.myapp.handler.member.MemberListHandler;
+import bitcamp.myapp.handler.member.MemberModifyHandler;
+import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.myapp.vo.Assignment;
 import bitcamp.myapp.vo.Board;
 import bitcamp.myapp.vo.Member;
 import bitcamp.util.Prompt;
-
-import java.sql.Date;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
@@ -21,22 +35,22 @@ public class App {
 
   Prompt prompt = new Prompt(System.in);
 
-  List<Board> boardRepository = new LinkedList<>();
+  List<Board> boardRepository = new ArrayList<>();
   List<Assignment> assignmentRepository = new LinkedList<>();
   List<Member> memberRepository = new ArrayList<>();
-  List<Board> greetingRepository = new ArrayList<>();
+  List<Board> greetingRepository = new LinkedList<>();
 
   MenuGroup mainMenu;
 
   App() {
+    assignmentRepository = loadData("assignment.json", Assignment.class);
+    memberRepository = loadData("member.json", Member.class);
+    boardRepository = loadData("board.json", Board.class);
+    greetingRepository = loadData("greeting.json", Board.class);
     prepareMenu();
-    loadAssignment();
-    loadMember();
-    loadBoard();
-    loadGreeting();
   }
 
-  public static void main(String[] args) throws Exception {
+  public static void main(String[] args) {
     new App().run();
   }
 
@@ -84,161 +98,43 @@ public class App {
         System.out.println("예외 발생!");
       }
     }
-    saveAssignment();
-    saveMember();
-    saveBoard();
-    saveGreeting();
+    saveData("assignment.json", assignmentRepository);
+    saveData("member.json", memberRepository);
+    saveData("board.json", boardRepository);
+    saveData("greeting.json", greetingRepository);
   }
 
-  void loadAssignment() {
-    try (BufferedDataInputStream in = new BufferedDataInputStream("assignment.data")) {
+  <E> List<E> loadData(String filepath, Class<E> clazz) {
 
-      long start = System.currentTimeMillis();
-      int size = in.readInt();
+    try (BufferedReader in = new BufferedReader(new FileReader(filepath))) {
 
-      for (int i = 0; i < size; i++) {
-        Assignment assignment = new Assignment();
-        assignment.setTitle(in.readUTF());
-        assignment.setContent(in.readUTF());
-        assignment.setDeadline(Date.valueOf(in.readUTF()));
-        assignmentRepository.add(assignment);
+      // 파일에서 JSON 문자열을 모두 읽어서 버퍼에 저장한다.
+      StringBuilder strBuilder = new StringBuilder();
+      String str;
+      while ((str = in.readLine()) != null) {
+        strBuilder.append(str);
       }
-      long end = System.currentTimeMillis();
-      System.out.printf("걸린 시간: %d\n", end - start);
+
+      // 버퍼에 저장된 JSON 문자열을 가지고 컬렉션 객체를 생성한다.
+      return (List<E>) new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(
+          strBuilder.toString(),
+          TypeToken.getParameterized(ArrayList.class, clazz));
 
     } catch (Exception e) {
-      System.out.println("과제 데이터 로딩 중 오류 발생!");
+      System.out.printf("%s 파일 로딩 중 오류 발생!\n", filepath);
+      e.printStackTrace();
+    }
+    return new ArrayList<>();
+  }
+
+  void saveData(String filepath, List<?> dataList) {
+    try (BufferedWriter out = new BufferedWriter(new FileWriter(filepath))) {
+
+      out.write(new GsonBuilder().setDateFormat("yyyy-MM-dd").create().toJson(dataList));
+
+    } catch (Exception e) {
+      System.out.printf("%s 파일 저장 중 오류 발생!\n", filepath);
       e.printStackTrace();
     }
   }
-
-  void saveAssignment() {
-    try (BufferedDataOutputStream out = new BufferedDataOutputStream("assignment.data")) {
-      long start = System.currentTimeMillis();
-      out.writeInt(assignmentRepository.size());
-
-      for (Assignment assignment : assignmentRepository) {
-        out.writeUTF(assignment.getTitle());
-        out.writeUTF(assignment.getContent());
-        out.writeUTF(assignment.getDeadline().toString());
-      }
-
-      long end = System.currentTimeMillis();
-      System.out.printf("걸린 시간: %d\n", end - start);
-
-    } catch (Exception e) {
-      System.out.println("과제 데이터 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void loadMember() {
-    try (BufferedDataInputStream  in = new BufferedDataInputStream("member.data")) {
-      int size = in.readShort();
-
-      for (int i = 0; i < size; i++) {
-        Member member = new Member();
-        member.setName(in.readUTF());
-        member.setEmail(in.readUTF());
-        member.setPassword(in.readUTF());
-        member.setCreatedDate(new java.util.Date(in.readLong()));
-        memberRepository.add(member);
-      }
-    } catch (Exception e) {
-      System.out.println("회원 데이터 로딩 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void saveMember() {
-    try (BufferedDataOutputStream out = new BufferedDataOutputStream("member.data")) {
-
-      out.writeShort(memberRepository.size());
-
-      for (Member member : memberRepository) {
-        out.writeUTF(member.getName());
-        out.writeUTF(member.getEmail());
-        out.writeUTF(member.getPassword());
-        out.writeLong(member.getCreatedDate().getTime());
-      }
-
-    } catch (Exception e) {
-      System.out.println("회원 데이터 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void loadBoard() {
-    try (BufferedDataInputStream in = new BufferedDataInputStream("board.data")) {
-      int size = in.readShort();
-
-      for (int i = 0; i < size; i++) {
-        Board board = new Board();
-        board.setTitle(in.readUTF());
-        board.setContent(in.readUTF());
-        board.setWriter(in.readUTF());
-        board.setCreatedDate(new java.util.Date(in.readLong()));
-        boardRepository.add(board);
-      }
-    } catch (Exception e) {
-      System.out.println("게시글 데이터 로딩 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void saveBoard() {
-    try (BufferedDataOutputStream out = new BufferedDataOutputStream("board.data")) {
-
-      out.writeShort(boardRepository.size());
-
-      for (Board board : boardRepository) {
-        out.writeUTF(board.getTitle());
-        out.writeUTF(board.getContent());
-        out.writeUTF(board.getWriter());
-        out.writeLong(board.getCreatedDate().getTime());
-      }
-
-    } catch (Exception e) {
-      System.out.println("게시글 데이터 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void loadGreeting() {
-    try (BufferedDataInputStream in = new BufferedDataInputStream("greeting.data")) {
-      int size = in.readShort();
-
-      for (int i = 0; i < size; i++) {
-        Board board = new Board();
-        board.setTitle(in.readUTF());
-        board.setContent(in.readUTF());
-        board.setWriter(in.readUTF());
-        board.setCreatedDate(new java.util.Date(in.readLong()));
-        greetingRepository.add(board);
-      }
-    } catch (Exception e) {
-      System.out.println("가입인사 데이터 로딩 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-  void saveGreeting() {
-    try (BufferedDataOutputStream out = new BufferedDataOutputStream("greeting.data")) {
-
-      out.writeShort(greetingRepository.size());
-
-      for (Board board : greetingRepository) {
-        out.writeUTF(board.getTitle());
-        out.writeUTF(board.getContent());
-        out.writeUTF(board.getWriter());
-        out.writeLong(board.getCreatedDate().getTime());
-      }
-
-    } catch (Exception e) {
-      System.out.println("가입인사 데이터 저장 중 오류 발생!");
-      e.printStackTrace();
-    }
-  }
-
-
 }
