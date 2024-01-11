@@ -1,14 +1,14 @@
 package algorithm.test.backjoon.level01.exam11;
 
-import java.util.Scanner;
+import java.util.Scanner; // 자바 기본 도구 스캐너 사용
 
 
-public class Main {
-  public static void main(String[] args) {
-    Scanner sc = new Scanner(System.in);
+public class Main { // Main 클래스 선언
+  public static void main(String[] args) { // main 메서드 선언
+    Scanner sc = new Scanner(System.in); // 자바 스캐너 인스턴스 생성
 
-    int a = sc.nextInt();
-    int b = sc.nextInt();
+    int a = sc.nextInt(); // 사용자 첫번째 숫자 입력 변수 a
+    int b = sc.nextInt(); // 사용자 두번째 숫자 입력 변수 b
     int n3 = b / 100; // 100의자리 추출
     int n1 = b % 10; // 1의자리 추출
     int n2 = (b - (n3 * 100) - n1) / 10; // 10의자리 추출
