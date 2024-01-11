@@ -116,7 +116,7 @@ public class App {
       }
 
       // 버퍼에 저장된 JSON 문자열을 가지고 컬렉션 객체를 생성한다.
-      return (List<E>) new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(
+      list = (List<E>) new GsonBuilder().setDateFormat("yyyy-MM-dd").create().fromJson(
           strBuilder.toString(),
           TypeToken.getParameterized(ArrayList.class, clazz));
 

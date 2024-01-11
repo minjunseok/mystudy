@@ -5,29 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a84827e7-6d13-4c5e-bb9d-79b24217473a" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/AbstractDao.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/DaoException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/DaoTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../algorithm-test/app/src/main/java/algorithm/test/backjoon/level01/exam11/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/../algorithm-test/app/src/main/java/algorithm/test/backjoon/level01/exam11/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex1/Exam0110.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex1/Exam0110.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex1/Exam0120.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex1/Exam0120.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex2/Exam0110.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex2/Exam0110.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex3/MyClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex3/MyClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex4/MyClass2.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex4/MyClass2.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex5/MyAnnotation.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex5/MyAnnotation.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex5/MyAnnotation3.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/annotation/ex5/MyAnnotation3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex01/Exam0220.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex01/Exam0220.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0211.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0211.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0213.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0213.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0222.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/generic/ex02/Exam0222.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0710.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0710.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0720.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0720.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0920.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex12/Exam0920.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex13/Exam01.java" beforeDir="false" afterPath="$PROJECT_DIR$/../java-basic/app/src/main/java/com/eomcs/oop/ex13/Exam01.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/json/DaoException.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/AbstractDao.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/json/AbstractDao.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/DaoException.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/dao/DaoTest.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Assignment.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Assignment.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Board.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Board.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Member.java" beforeDir="false" afterPath="$PROJECT_DIR$/app/src/main/java/bitcamp/myapp/vo/Member.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/src/main/java/bitcamp/util/bitcamp-study.code-workspace" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -103,18 +90,19 @@
       <recent name="bitcamp.myapp.AssignmentMenu" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="bitcamp.myapp.dao.json" />
       <recent name="bitcamp.io" />
       <recent name="bitcamp.util" />
       <recent name="bitcamp.myapp" />
     </key>
   </component>
-  <component name="RunManager" selected="애플리케이션.DaoTest">
+  <component name="RunManager" selected="Gradle.myapp [run]">
     <configuration name="DaoTest" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="bitcamp.myapp.dao.DaoTest" />
       <module name="myapp.app.main" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="bitcamp.myapp.dao.*" />
+          <option name="PATTERN" value="bitcamp.myapp.dao.json.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -232,8 +220,8 @@
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="애플리케이션.DaoTest" />
         <item itemvalue="Gradle.myapp [run]" />
+        <item itemvalue="애플리케이션.DaoTest" />
         <item itemvalue="Gradle.myapp [build]" />
         <item itemvalue="Gradle.myapp [classes]" />
         <item itemvalue="애플리케이션.QueueTest" />

@@ -21,15 +21,6 @@ public class Assignment implements Serializable {
     return obj;
   }
 
-  @Override
-  public String toString() {
-    return "Assignment{" +
-        "title='" + title + '\'' +
-        ", content='" + content + '\'' +
-        ", deadline=" + deadline +
-        '}';
-  }
-
   public String getTitle() {
     return title;
   }
