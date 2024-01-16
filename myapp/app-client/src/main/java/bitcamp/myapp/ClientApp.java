@@ -3,16 +3,25 @@ package bitcamp.myapp;
 import bitcamp.menu.MenuGroup;
 import bitcamp.myapp.dao.AssignmentDao;
 import bitcamp.myapp.dao.BoardDao;
+import bitcamp.myapp.dao.DaoProxyGenerator;
 import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.network.AssignmentDaoImpl;
-import bitcamp.myapp.dao.network.BoardDaoImpl;
-import bitcamp.myapp.dao.network.MemberDaoImpl;
 import bitcamp.myapp.handler.HelpHandler;
-import bitcamp.myapp.handler.assignment.*;
-import bitcamp.myapp.handler.board.*;
-import bitcamp.myapp.handler.member.*;
+import bitcamp.myapp.handler.assignment.AssignmentAddHandler;
+import bitcamp.myapp.handler.assignment.AssignmentDeleteHandler;
+import bitcamp.myapp.handler.assignment.AssignmentListHandler;
+import bitcamp.myapp.handler.assignment.AssignmentModifyHandler;
+import bitcamp.myapp.handler.assignment.AssignmentViewHandler;
+import bitcamp.myapp.handler.board.BoardAddHandler;
+import bitcamp.myapp.handler.board.BoardDeleteHandler;
+import bitcamp.myapp.handler.board.BoardListHandler;
+import bitcamp.myapp.handler.board.BoardModifyHandler;
+import bitcamp.myapp.handler.board.BoardViewHandler;
+import bitcamp.myapp.handler.member.MemberAddHandler;
+import bitcamp.myapp.handler.member.MemberDeleteHandler;
+import bitcamp.myapp.handler.member.MemberListHandler;
+import bitcamp.myapp.handler.member.MemberModifyHandler;
+import bitcamp.myapp.handler.member.MemberViewHandler;
 import bitcamp.util.Prompt;
-
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.net.Socket;
@@ -32,7 +41,6 @@ public class ClientApp {
   DataInputStream in;
   DataOutputStream out;
 
-
   ClientApp() {
     prepareNetwork();
     prepareMenu();
@@ -45,17 +53,17 @@ public class ClientApp {
 
   void prepareNetwork() {
     try {
-     socket = new Socket("localhost", 8888);
+      socket = new Socket("localhost", 8888);
       System.out.println("서버와 연결되었음!");
 
-       in = new DataInputStream(socket.getInputStream());
-       out = new DataOutputStream(socket.getOutputStream());
+      in = new DataInputStream(socket.getInputStream());
+      out = new DataOutputStream(socket.getOutputStream());
 
-
-      boardDao = new BoardDaoImpl("board", in, out);
-      greetingDao = new BoardDaoImpl("greeting", in, out);
-      assignmentDao = new AssignmentDaoImpl("assignment", in, out);
-      memberDao = new MemberDaoImpl("member", in, out);
+      DaoProxyGenerator daoGenerator = new DaoProxyGenerator(in, out);
+      boardDao = daoGenerator.create(BoardDao.class, "board");
+      greetingDao = daoGenerator.create(BoardDao.class, "greeting");
+      assignmentDao = daoGenerator.create(AssignmentDao.class, "assignment");
+      memberDao = daoGenerator.create(MemberDao.class, "member");
 
     } catch (Exception e) {
       System.out.println("통신 오류!");
@@ -109,22 +117,18 @@ public class ClientApp {
       }
     }
   }
-  void close() {
 
-    //안에 변수를 저장한 이유 try with resource의 의해 try 블록을 나갈 때 close메서드를 자동으로 호출하기 때문에 안에 변수를 선언한 것.
-    //서버와 연결이 끝났을 때 일일이 소켓에 대해 close를 호출해야하는 번거로움을 해소하기 위해
+  void close() {
     try (Socket socket = this.socket;
-      DataInputStream in = this.in;
-      DataOutputStream out = this.out) {
+        DataInputStream in = this.in;
+        DataOutputStream out = this.out) {
 
       out.writeUTF("quit");
       System.out.println(in.readUTF());
 
     } catch (Exception e) {
-      //서버와 연결을 끊는 과정에서 예외가 발생한 경우 무시한다.
-      //왜? 따로 처리할 것이 없다.
-
-
+      // 서버와 연결을 끊는 과정에서 예외가 발생한 경우 무시한다.
+      // 왜? 따로 처리할 것이 없다.
     }
   }
 }

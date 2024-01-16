@@ -36,37 +36,36 @@ public class ServerApp {
   void run() {
     System.out.println("[과제관리 서버시스템]");
 
-    try {
-      ServerSocket serverSocket = new ServerSocket(8888);
+    try (ServerSocket serverSocket = new ServerSocket(8888)) {
+
       System.out.println("서버 실행!");
 
       while (true) {
         service(serverSocket.accept());
       }
-      
+
     } catch (Exception e) {
       System.out.println("통신 오류!");
       e.printStackTrace();
     }
   }
 
-  void service(Socket socket) throws Exception {
+  void service(Socket socket) {
+
     try (Socket s = socket;
-         DataInputStream in = new DataInputStream(socket.getInputStream());
-         DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
+        DataInputStream in = new DataInputStream(socket.getInputStream());
+        DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
 
       System.out.println("클라이언트와 연결됨!");
 
       while (processRequest(in, out) != -1) {
         System.out.println("----------------------------");
-        }
+      }
 
       System.out.println("클라이언트 연결 종료!");
 
-
     } catch (Exception e) {
       System.out.println("클라이언트 연결 오류!");
-
     }
   }
 
@@ -75,7 +74,7 @@ public class ServerApp {
     System.out.println("[클라이언트 요청]");
     String dataName = in.readUTF();
     if (dataName.equals("quit")) {
-      out.writeUTF("Goodbye");
+      out.writeUTF("Goodbye!");
       return -1;
     }
     String command = in.readUTF();

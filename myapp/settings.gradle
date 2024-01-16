@@ -12,5 +12,8 @@ plugins {
 
 rootProject.name = 'myapp'
 //include('app')
+include('app-api')
 include('app-client')
 include('app-server')
+include('app-common')
+
