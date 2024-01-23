@@ -41,19 +41,7 @@ public class ServerApp {
       System.out.println("서버 실행!");
 
       while (true) {
-        // 기존 방식: main 스레드에서 실행
-//        service(serverSocket.accept());
-        
-        // 개선: main 스레드에서 분리하여 실행
-        Socket socket = serverSocket.accept();
-        new Thread(() -> {
-          try {
-            service(socket);
-          } catch (Exception e) {
-            System.out.println("클라이언트 요청 처리 중 오류 발생!");
-            e.printStackTrace();
-          }
-        }).start();
+        new RequestProcessor(serverSocket.accept()).start();
       }
 
     } catch (Exception e) {
@@ -141,5 +129,23 @@ public class ServerApp {
     }
 
     return args;
+  }
+  class RequestProcessor extends Thread {
+
+    Socket socket;
+
+    RequestProcessor(Socket socket) {
+      this.socket = socket;
+    }
+
+    @Override
+    public void run() {
+     try {
+       ServerApp.this.service(socket);
+     } catch (Exception e) {
+       System.out.println("클라이언트 요청 처리 중 오류 발생!");
+       e.printStackTrace();
+     }
+    }
   }
 }
