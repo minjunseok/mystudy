@@ -14,9 +14,12 @@ import java.lang.reflect.Parameter;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashMap;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 public class ServerApp {
 
+  ExecutorService executorService = Executors.newCachedThreadPool();
   HashMap<String, Object> daoMap = new HashMap<>();
   Gson gson;
 
@@ -41,8 +44,9 @@ public class ServerApp {
       System.out.println("서버 실행!");
 
       while (true) {
-        new RequestProcessor(serverSocket.accept()).start();
-      }
+        Socket socket = serverSocket.accept();
+        executorService.execute(() -> service(socket));
+          }
 
     } catch (Exception e) {
       System.out.println("통신 오류!");
@@ -56,14 +60,14 @@ public class ServerApp {
         DataInputStream in = new DataInputStream(socket.getInputStream());
         DataOutputStream out = new DataOutputStream(socket.getOutputStream())) {
 
-      System.out.println("클라이언트와 연결됨!");
+      System.out.printf("[%s] 클라이언트와 연결됨!\n", Thread.currentThread().getName());
 
       processRequest(in, out);
 
-      System.out.println("클라이언트 연결 종료!");
+      System.out.printf("[%s] 클라이언트 연결 종료!\n", Thread.currentThread().getName());
 
     } catch (Exception e) {
-      System.out.println("클라이언트 연결 오류!");
+      System.out.printf("[%s] 클라이언트 연결 오류!\n", Thread.currentThread().getName());
     }
   }
 
@@ -129,23 +133,5 @@ public class ServerApp {
     }
 
     return args;
-  }
-  class RequestProcessor extends Thread {
-
-    Socket socket;
-
-    RequestProcessor(Socket socket) {
-      this.socket = socket;
-    }
-
-    @Override
-    public void run() {
-     try {
-       ServerApp.this.service(socket);
-     } catch (Exception e) {
-       System.out.println("클라이언트 요청 처리 중 오류 발생!");
-       e.printStackTrace();
-     }
-    }
   }
 }
