@@ -14,19 +14,13 @@ public class MyDriver implements java.sql.Driver {
   }
 
   @Override
-  public Connection connect(String url, Properties info) throws SQLException {
-    // TODO Auto-generated method stub
-    return null;
-  }
-
-  @Override
-  public boolean acceptsURL(String url) throws SQLException {
+  public boolean acceptsURL(String arg0) throws SQLException {
     // TODO Auto-generated method stub
     return false;
   }
 
   @Override
-  public DriverPropertyInfo[] getPropertyInfo(String url, Properties info) throws SQLException {
+  public Connection connect(String arg0, Properties arg1) throws SQLException {
     // TODO Auto-generated method stub
     return null;
   }
@@ -44,14 +38,21 @@ public class MyDriver implements java.sql.Driver {
   }
 
   @Override
+  public Logger getParentLogger() throws SQLFeatureNotSupportedException {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
+  public DriverPropertyInfo[] getPropertyInfo(String arg0, Properties arg1) throws SQLException {
+    // TODO Auto-generated method stub
+    return null;
+  }
+
+  @Override
   public boolean jdbcCompliant() {
     // TODO Auto-generated method stub
     return false;
   }
 
-  @Override
-  public Logger getParentLogger() throws SQLFeatureNotSupportedException {
-    // TODO Auto-generated method stub
-    return null;
-  }
 }
