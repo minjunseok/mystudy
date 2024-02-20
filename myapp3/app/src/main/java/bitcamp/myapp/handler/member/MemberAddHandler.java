@@ -1,28 +1,28 @@
 package bitcamp.myapp.handler.member;
 
 import bitcamp.menu.AbstractMenuHandler;
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.vo.Member;
+import bitcamp.myapp.dao.EmployeeDao;
+import bitcamp.myapp.vo.Employee;
 import bitcamp.util.Prompt;
 import java.util.Date;
 
 public class MemberAddHandler extends AbstractMenuHandler {
 
-  private MemberDao memberDao;
+  private EmployeeDao employeeDao;
 
-  public MemberAddHandler(MemberDao memberDao, Prompt prompt) {
+  public MemberAddHandler(EmployeeDao employeeDao, Prompt prompt) {
     super(prompt);
-    this.memberDao = memberDao;
+    this.employeeDao = employeeDao;
   }
 
   @Override
   protected void action() {
-    Member member = new Member();
-    member.setEmail(this.prompt.input("이메일? "));
-    member.setName(this.prompt.input("이름? "));
-    member.setPassword(this.prompt.input("암호? "));
-    member.setCreatedDate(new Date());
+    Employee employee = new Employee();
+    employee.setEmail(this.prompt.input("이메일? "));
+    employee.setName(this.prompt.input("이름? "));
+    employee.setPassword(this.prompt.input("암호? "));
+    employee.setCreatedDate(new Date());
 
-    memberDao.add(member);
+    employeeDao.add(employee);
   }
 }

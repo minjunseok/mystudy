@@ -1,37 +1,37 @@
 package bitcamp.myapp.handler.member;
 
 import bitcamp.menu.AbstractMenuHandler;
-import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.vo.Member;
+import bitcamp.myapp.dao.EmployeeDao;
+import bitcamp.myapp.vo.Employee;
 import bitcamp.util.Prompt;
 
 public class MemberModifyHandler extends AbstractMenuHandler {
 
-  private MemberDao memberDao;
+  private EmployeeDao employeeDao;
 
-  public MemberModifyHandler(MemberDao memberDao, Prompt prompt) {
+  public MemberModifyHandler(EmployeeDao employeeDao, Prompt prompt) {
     super(prompt);
-    this.memberDao = memberDao;
+    this.employeeDao = employeeDao;
   }
 
   @Override
   protected void action() {
     int no = this.prompt.inputInt("번호? ");
 
-    Member old = memberDao.findBy(no);
+    Employee old = employeeDao.findBy(no);
     if (old == null) {
       System.out.println("회원 번호가 유효하지 않습니다!");
       return;
     }
 
-    Member member = new Member();
-    member.setNo(old.getNo());
-    member.setEmail(this.prompt.input("이메일(%s)? ", old.getEmail()));
-    member.setName(this.prompt.input("이름(%s)? ", old.getName()));
-    member.setPassword(this.prompt.input("새 암호? "));
-    member.setCreatedDate(old.getCreatedDate());
+    Employee employee = new Employee();
+    employee.setNo(old.getNo());
+    employee.setEmail(this.prompt.input("이메일(%s)? ", old.getEmail()));
+    employee.setName(this.prompt.input("이름(%s)? ", old.getName()));
+    employee.setPassword(this.prompt.input("새 암호? "));
+    employee.setCreatedDate(old.getCreatedDate());
 
-    memberDao.update(member);
+    employeeDao.update(employee);
     System.out.println("회원을 변경했습니다.");
   }
 }
