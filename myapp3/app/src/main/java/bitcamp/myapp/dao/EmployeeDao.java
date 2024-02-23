@@ -9,7 +9,7 @@ public interface EmployeeDao {
 
   int delete(int no);
 
-  List<Employee> findAll();
+  List<Employee> findAll(int category);
 
   Employee findBy(int no);
 

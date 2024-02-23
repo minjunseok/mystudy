@@ -1,9 +1,7 @@
 package bitcamp.myapp.servlet.member;
 
 import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.mysql.MemberDaoImpl;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.DBConnectionPool;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -19,13 +17,11 @@ public class MemberViewServlet extends HttpServlet {
 
   @Override
   public void init() {
-
     this.memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
-
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doGet(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     response.setContentType("text/html;charset=UTF-8");
@@ -51,7 +47,7 @@ public class MemberViewServlet extends HttpServlet {
         return;
       }
 
-      out.println("<form action='/member/update'>");
+      out.println("<form action='/member/update' method='post'>");
       out.println("<div>");
       out.printf("  번호: <input readonly name='no' type='text' value='%d'>\n", member.getNo());
       out.println("</div>");

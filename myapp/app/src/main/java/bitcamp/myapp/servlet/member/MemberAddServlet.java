@@ -1,9 +1,7 @@
 package bitcamp.myapp.servlet.member;
 
 import bitcamp.myapp.dao.MemberDao;
-import bitcamp.myapp.dao.mysql.MemberDaoImpl;
 import bitcamp.myapp.vo.Member;
-import bitcamp.util.DBConnectionPool;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -16,15 +14,14 @@ import javax.servlet.http.HttpServletResponse;
 public class MemberAddServlet extends HttpServlet {
 
   private MemberDao memberDao;
-@Override
+
+  @Override
   public void init() {
-
     this.memberDao = (MemberDao) this.getServletContext().getAttribute("memberDao");
-
   }
 
   @Override
-  protected void service(HttpServletRequest request, HttpServletResponse response)
+  protected void doPost(HttpServletRequest request, HttpServletResponse response)
       throws ServletException, IOException {
 
     response.setContentType("text/html;charset=UTF-8");
