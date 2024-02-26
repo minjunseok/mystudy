@@ -25,7 +25,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 //  private String email;
 //  private String phoneno;
 //  private String faxno;
-//  private String rank;
 //  private String position;
 //  private String password;
 //  private Date createdDate;
@@ -49,7 +48,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             + "email,"
             + "phoneno,"
             + "faxno,"
-            + "rank,"
             + "position,"
             + "birthday,"
             + "postalcode,"
@@ -57,13 +55,12 @@ public class EmployeeDaoImpl implements EmployeeDao {
             + "addressline2,"
             + "job,"
             + "startdate,"
-            + "resignationday) values(?,?,?,?,?,?,?,?,?,?,?,?,?)",
+            + "resignationday) values(?,?,?,?,?,?,?,?,?,?,?,?)",
             + PreparedStatement.RETURN_GENERATED_KEYS)) {
       pstmt.setString(1,employee.getName());
       pstmt.setString(2,employee.getEmail());
       pstmt.setString(4,employee.getPhoneno());
       pstmt.setString(5,employee.getFaxno());
-      pstmt.setString(6,employee.getRank());
       pstmt.setString(7,employee.getPosition());
       pstmt.setString(8,employee.getBirthday());
       pstmt.setString(9,employee.getPostalcode());
@@ -108,7 +105,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
 //      pstmt.setString(3, employee.getEmail());
 //      pstmt.setString(4,employee.getPhoneno());
 //      pstmt.setString(5,employee.getFaxno());
-//      pstmt.setString(6,employee.getRank());
 //      pstmt.setString(7,employee.getPosition());
 //      pstmt.setString(8,employee.getBirthday());
 //      pstmt.setString(9,employee.getPostalcode());
@@ -130,7 +126,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
             + "created_date,"
             + "phoneno,"
             + "faxno,"
-            + "rank,"
             + "position,"
             + "birthday,"
             + "postalcode,"
@@ -151,7 +146,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
         employee.setCreatedDate(rs.getDate("created_date"));
         employee.setPhoneno(rs.getString("phoneno"));
         employee.setFaxno(rs.getString("faxno"));
-        employee.setRank(rs.getString("rank"));
         employee.setPosition(rs.getString("position"));
         employee.setBirthday(rs.getString("birthday"));
         employee.setPostalcode(rs.getString("Postalcode"));
@@ -186,7 +180,6 @@ public class EmployeeDaoImpl implements EmployeeDao {
           employee.setCreatedDate(rs.getDate("created_date"));
           employee.setPhoneno(rs.getString("phoneno"));
           employee.setFaxno(rs.getString("faxno"));
-          employee.setRank(rs.getString("rank"));
           employee.setPosition(rs.getString("position"));
           employee.setBirthday(rs.getString("birthday"));
           employee.setPostalcode(rs.getString("postalcode"));

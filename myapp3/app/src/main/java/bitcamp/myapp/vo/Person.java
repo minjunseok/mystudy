@@ -13,15 +13,17 @@ public class Person implements Serializable {
   public String password;
   public String name;
   public Date createdDate;
+  public String Photo;
 
   @Override
   public String toString() {
-    return "Information{" +
+    return "Person{" +
         "no=" + no +
         ", email='" + email + '\'' +
         ", password='" + password + '\'' +
         ", name='" + name + '\'' +
         ", createdDate=" + createdDate +
+        ", Photo='" + Photo + '\'' +
         '}';
   }
 
@@ -64,4 +66,13 @@ public class Person implements Serializable {
   public void setCreatedDate(Date createdDate) {
     this.createdDate = createdDate;
   }
+
+  public String getPhoto() {
+    return Photo;
+  }
+
+  public void setPhoto(String photo) {
+    Photo = photo;
+  }
 }
+

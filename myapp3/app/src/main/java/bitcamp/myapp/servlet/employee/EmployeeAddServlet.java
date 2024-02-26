@@ -57,7 +57,6 @@ public class EmployeeAddServlet extends HttpServlet {
       employee.setEmail(request.getParameter("email"));
       employee.setPhoneno(request.getParameter("phonenno"));
       employee.setFaxno(request.getParameter("faxno"));
-      employee.setRank(request.getParameter("rank"));
       employee.setPosition(request.getParameter("position"));
       employee.setBirthday(request.getParameter("birthday"));
       employee.setPostalcode(request.getParameter("postalcode"));

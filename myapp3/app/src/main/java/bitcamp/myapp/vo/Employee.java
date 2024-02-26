@@ -12,7 +12,6 @@ public class Employee implements Serializable {
   private String email;
   private String phoneno;
   private String faxno;
-  private String rank;
   private String position;
   private String password;
   private Date createdDate;
@@ -24,6 +23,7 @@ public class Employee implements Serializable {
   private String job;
   private String startdate;
   private String resignationday;
+  private String photo;
 
 
   @Override
@@ -34,7 +34,6 @@ public class Employee implements Serializable {
         ", email='" + email + '\'' +
         ", phoneno='" + phoneno + '\'' +
         ", faxno='" + faxno + '\'' +
-        ", rank='" + rank + '\'' +
         ", position='" + position + '\'' +
         ", password='" + password + '\'' +
         ", createdDate=" + createdDate +
@@ -46,6 +45,7 @@ public class Employee implements Serializable {
         ", job='" + job + '\'' +
         ", startdate='" + startdate + '\'' +
         ", resignationday='" + resignationday + '\'' +
+        ", photo='" + photo + '\'' +
         '}';
   }
 
@@ -88,14 +88,6 @@ public class Employee implements Serializable {
 
   public void setFaxno(String faxno) {
     this.faxno = faxno;
-  }
-
-  public String getRank() {
-    return rank;
-  }
-
-  public void setRank(String rank) {
-    this.rank = rank;
   }
 
   public String getPosition() {
@@ -185,4 +177,13 @@ public class Employee implements Serializable {
   public void setResignationday(String resignationday) {
     this.resignationday = resignationday;
   }
+
+  public String getPhoto() {
+    return photo;
+  }
+
+  public void setPhoto(String photo) {
+    this.photo = photo;
+  }
 }
+

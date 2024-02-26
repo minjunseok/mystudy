@@ -31,11 +31,10 @@ CREATE TABLE hcus_employees (
 	email              VARCHAR(40)        NOT NULL COMMENT '이메일', -- 이메일
 	phoneno            VARCHAR(30)        NOT NULL COMMENT '연락처', -- 연락처
 	faxno              VARCHAR(30)        NOT NULL COMMENT '팩스번호', -- 팩스번호
-	rank               VARCHAR(50)        NOT NULL COMMENT '직급', -- 직급
 	position           VARCHAR(50)        NOT NULL COMMENT '직책', -- 직책
 	password           VARCHAR(50)        NULL     COMMENT '비밀번호', -- 비밀번호
 	createdDate        DATE               NOT NULL COMMENT '가입일', -- 가입일
---	photo              <데이터 타입 없음> NULL     COMMENT '사진', -- 사진
+  photo              VARCHAR(255)       NULL     COMMENT '사진', -- 사진
 	currentlyemplooyed BOOLEAN            NOT NULL COMMENT '재직여부', -- 재직여부
 	birthday           VARCHAR(50)        NULL     COMMENT '생년월일', -- 생년월일
 	postalcode         VARCHAR(30)        NOT NULL COMMENT '우편번호', -- 우편번호
