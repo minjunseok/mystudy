@@ -19,7 +19,7 @@
 %>
 <c:set scope="request" var="name1" value="홍길동2"/>
 1: ${requestScope.name1}<br>
-2: ${pageScope.name1}<br>
+2: ${p3ageScope.name1}<br>
 3: ${name1}<br> 
 <hr>
 

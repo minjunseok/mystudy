@@ -2,6 +2,7 @@ package bitcamp.myapp.dao;
 
 public interface AttachedFileDao {
 
-  void add()
+  void add(Attached file);
+
 
 }

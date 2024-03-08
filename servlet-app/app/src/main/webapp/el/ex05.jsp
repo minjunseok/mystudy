@@ -11,6 +11,9 @@
 <body>
 <h1>EL - 배열에서 값 꺼내기</h1>
 <%
+
+//String[] names = new String[]{“홍길동”,”임꺽정”,”유관순”};
+
 pageContext.setAttribute("names", new String[]{"홍길동","임꺽정","유관순"});
 %>
 
