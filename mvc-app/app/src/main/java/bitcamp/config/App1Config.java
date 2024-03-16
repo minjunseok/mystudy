@@ -1,0 +1,24 @@
+package bitcamp.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.ComponentScan.Filter;
+import org.springframework.context.annotation.FilterType;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartResolver;
+import org.springframework.web.multipart.support.StandardMultipartHttpServletRequest;
+import org.springframework.web.multipart.support.StandardServletMultipartResolver;
+
+
+@ComponentScan("bitcamp.app1")
+
+public class App1Config {
+
+  @Bean
+  MultipartResolver multipartResolver() {
+    StandardServletMultipartResolver mr = new StandardServletMultipartResolver();
+    return mr;
+
+
+  }
+}

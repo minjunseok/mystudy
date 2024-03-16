@@ -16,6 +16,8 @@
     id="mulitpartResolver"/>
 
   <context:component-scan base-package="bitcamp.myapp.controller"/>
+
+
   <mvc:annotation-driven/>
 
 
