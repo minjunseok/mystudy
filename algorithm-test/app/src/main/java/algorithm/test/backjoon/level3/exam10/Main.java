@@ -7,21 +7,6 @@ public class Main {
     Scanner sc = new Scanner(System.in);
     int count = sc.nextInt();
 
-
-
-    // for (int i = 1; i <= a; i++) {
-    // for (int j = 1; j <= i; j++) {
-    // System.out.print("*");
-    // }
-    // System.out.println();
-    // }
-    // }
-    // }
-    // aaaaaa*
-    // aaaaa**
-    // aaaa***
-    // aaa****
-    // aa*****
     for (int i = 0; i < count; i++) {
       for (int l = count - 1; l > i; l--) {
         System.out.printf(" ");
